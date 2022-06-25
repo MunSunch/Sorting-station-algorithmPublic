@@ -16,7 +16,7 @@ template <typename DataType> bool isEmpty(stack<DataType>* st){
     return st==NULL;
 }
 
-template <typename DataType> void push(stack<DataType>*& st, int inf)
+template <typename DataType> void push(stack<DataType>*& st, DataType inf)
 {
     stack<DataType>* tmp = new stack<DataType>;
     tmp->inf = inf;
@@ -24,13 +24,15 @@ template <typename DataType> void push(stack<DataType>*& st, int inf)
     st = tmp;
 }
 
-template <typename DataType> void pop(stack<DataType>*& st)
+template <typename DataType> DataType pop(stack<DataType>*& st)
 {
     if(st != NULL)
     {
         stack<DataType>* tmp = st;
+        DataType inf = tmp->inf;
         st = tmp->next;
         delete tmp;
+        return inf;
     }
 }
 
@@ -68,7 +70,7 @@ stack<DataType>* copy(stack<DataType>*& st, bool reverse = true)
     return buf;
 }
 
-template <typename DataType> DataType getTop(const stack<DataType>*& st)
+template <typename DataType> DataType& getTop(stack<DataType>*& st)
 {
     return st->inf;
 }

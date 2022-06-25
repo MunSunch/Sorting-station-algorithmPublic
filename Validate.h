@@ -91,9 +91,6 @@ bool checking3(const char* string)  // 12+12+34*(312-121)-1   --> true
     return true;
 }
 
-
-
-
 const char ERROR_INVALID_CHARACTERS[] = "ERROR!Valid characters: \"0123456789+-*/()\"";
 const char ERROR_IMBALANCE_BRACKETS[] = "ERROR!Bracket imbalance";
 const char ERROR_INCORRECT_ORDER[] = "ERROR!Incorrect order of order: \"2(\", \"++\", \"(-\"";
