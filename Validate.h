@@ -30,11 +30,11 @@ bool checking1(const char* string)  // 364362894++--(--)    --> true
 
 
 
+
 bool isOpenBracket(char symbol)
 {
     return symbol == '(';
 }
-
 bool isCloseBracket(char symbol)
 {
     return symbol == ')';
@@ -68,6 +68,9 @@ bool checking2(const char* string)   // (((2+2)) - (65+1))   --> true
 
 
 
+
+
+
 bool isOperator(char symbol){
     return symbol=='+' || symbol=='-' || symbol=='*' || symbol=='/';
 }
@@ -91,25 +94,31 @@ bool checking3(const char* string)  // 12+12+34*(312-121)-1   --> true
     return true;
 }
 
-const char ERROR_INVALID_CHARACTERS[] = "ERROR!Valid characters: \"0123456789+-*/()\"";
-const char ERROR_IMBALANCE_BRACKETS[] = "ERROR!Bracket imbalance";
-const char ERROR_INCORRECT_ORDER[] = "ERROR!Incorrect order of order: \"2(\", \"++\", \"(-\"";
-const char SUCCESS[] = "Success";
+
+
+
+
+struct checkStatus {
+    const char* ERROR_INVALID_CHARACTERS = "ERROR!Valid characters: \"0123456789+-*/()\"";
+    const char* ERROR_IMBALANCE_BRACKETS = "ERROR!Bracket imbalance";
+    const char* ERROR_INCORRECT_ORDER = "ERROR!Incorrect order of order: \"2(\", \"++\", \"(-\"";
+    const char* SUCCESS = "Success";
+} status;
 
 bool checking(const char* string, char* message){
     if(!checking1(string)){
-        strcpy(message, ERROR_INVALID_CHARACTERS);
+        strcpy(message, status.ERROR_INVALID_CHARACTERS);
         return false;
     }
     if(!checking2(string)){
-        strcpy(message, ERROR_IMBALANCE_BRACKETS);
+        strcpy(message, status.ERROR_IMBALANCE_BRACKETS);
         return false;
     }
     if(!checking3(string)){
-        strcpy(message, ERROR_INCORRECT_ORDER);
+        strcpy(message, status.ERROR_INCORRECT_ORDER);
         return false;
     }
-    strcpy(message, SUCCESS);
+    strcpy(message, status.SUCCESS);
     return true;
 }
 

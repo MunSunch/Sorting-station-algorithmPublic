@@ -1,0 +1,16 @@
+	Tue Jun 28 12:23:48 2022
+Expression:	2+2*2-7
+Checking:	Success
+PostfixExpression:	2 2 2 * + 7 - 
+Result:	-1
+
+	Tue Jun 28 12:25:03 2022
+Expression:	12-6/2+2*2*2-((12-13)*((6/2-1)-4))-100
+Checking:	Success
+PostfixExpression:	12 6 2 / - 2 2 * 2 * +   12 13 -    6 2 / 1 -  4 -  *  - 100 - 
+Result:	-85
+
+	Tue Jun 28 12:25:42 2022
+Expression:	gre43g43g4t12r2
+Message:ERROR!Valid characters: "0123456789+-*/()"
+

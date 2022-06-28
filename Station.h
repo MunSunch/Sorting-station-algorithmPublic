@@ -5,6 +5,8 @@
 #include <cstring>
 #include <cstdio>
 
+const unsigned int SIZE_BUF = 100;
+
 int getPriorityOperator(char symbol){
     switch (symbol) {
         case '+':
@@ -30,6 +32,7 @@ void append(char* string, const char* anotherString){
 }
 
 void getPosfixExpression(char* in, char* out){
+    //  https://en.wikipedia.org/wiki/Shunting_yard_algorithm
     stack<char>* operators = nullptr;
     const char div = ' ';
     for(int i=0; in[i] != '\0'; i++){
@@ -51,6 +54,7 @@ void getPosfixExpression(char* in, char* out){
             if(symbol == ')'){
                 while(getTop(operators) != '('){
                     append(out, getTop(operators));
+                    append(out, div);
                     pop(operators);
                 }
                 pop(operators);
@@ -60,10 +64,10 @@ void getPosfixExpression(char* in, char* out){
 
             int priorityCurrentOperator = getPriorityOperator(symbol);
             int priorityTopStackOperator = getPriorityOperator(getTop(operators));
-            if(priorityCurrentOperator <= priorityTopStackOperator){
+            if(priorityCurrentOperator < priorityTopStackOperator){
                 push(operators, symbol);
             } else {
-                while(!isEmpty(operators) && priorityCurrentOperator > getPriorityOperator(getTop(operators))){
+                while(!isEmpty(operators) && priorityCurrentOperator >= getPriorityOperator(getTop(operators))){
                     append(out, getTop(operators));
                     append(out, div);
                     pop(operators);
@@ -86,7 +90,7 @@ int getResultOperation(int a, int b, char operation){
         case '+':
             return a+b;
         case '-':
-            return std::max(a,b) - std::min(a,b);
+            return a-b;
         case '*':
             return a*b;
         case '/':
@@ -95,7 +99,7 @@ int getResultOperation(int a, int b, char operation){
 }
 
 int getResultPostfixExpresson(const char* postfixExpression) {
-    char buf[40];
+    char buf[SIZE_BUF];
     strcpy(buf, postfixExpression);
 
     stack<int> *numbers = nullptr;
@@ -108,25 +112,13 @@ int getResultPostfixExpresson(const char* postfixExpression) {
         } else {
             int firstOperand = pop(numbers);
             int secondOperand = pop(numbers);
-            int result = getResultOperation(firstOperand, secondOperand, *ptr);
+            int result = getResultOperation(secondOperand, firstOperand, *ptr);
             push(numbers, result);
         }
         ptr = strtok(NULL, div);
     }
 
-    return getTop(numbers);
+    return pop(numbers);
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 #endif //CALCULATOR_operatorsATION_H

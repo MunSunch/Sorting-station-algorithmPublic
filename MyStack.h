@@ -70,7 +70,7 @@ stack<DataType>* copy(stack<DataType>*& st, bool reverse = true)
     return buf;
 }
 
-template <typename DataType> DataType& getTop(stack<DataType>*& st)
+template <typename DataType> DataType getTop(stack<DataType>*& st)
 {
     return st->inf;
 }

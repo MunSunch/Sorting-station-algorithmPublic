@@ -3,4 +3,4 @@ project(Calculator)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(Calculator main.cpp MyStack.h Validate.h Station.h)
+add_executable(Calculator main.cpp MyStack.h Validate.h Station.h Logs.h)
