@@ -1,10 +1,11 @@
 # Default ignored files
 /shelf/
 /.idea/
-/cmake-build-debug/
+cmake-build-debug/
 CMakeLists.txt
 # Editor-based HTTP Client requests
 /httpRequests/
 # Datasource local storage ignored files
 /dataSources/
 /dataSources.local.xml
+.DS_store
